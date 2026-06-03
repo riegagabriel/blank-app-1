@@ -48,10 +48,10 @@ def kv(nombre):
 
 # ── Header ────────────────────────────────────────────────────────────────────
 st.title("Cercanía de denuncias de extorsión a instituciones educativas")
-st.caption("Lima y Callao · 2025–2026 · Fuentes: MINEDU (Padrón Web de Escale) y Mapa georreferenciado de MININTER")
+st.caption("Lima y Callao · 2025–2026 · Fuentes: MINEDU (ESCALE) y MININTER")
 
 # ── KPIs fila 1: IIEE ─────────────────────────────────────────────────────────
-st.markdown('<div class="section-title">Instituciones Educativas (MINEDU — Padrón Web 29/04/2026)</div>',
+st.markdown('<div class="section-title">Instituciones Educativas (MINEDU — Escale)</div>',
             unsafe_allow_html=True)
 c1, c2, c3 = st.columns(3)
 c1.metric("IIEE activas en Lima y Callao", f"{int(kv('IIEE activas en Lima y Callao')):,}")
@@ -59,7 +59,7 @@ c2.metric("Docentes censados 2025",        f"{int(kv('Docentes censados 2025 (to
 c3.metric("Alumnos censados 2025",         f"{int(kv('Alumnos censados 2025 (total)')):,}")
 
 # ── KPIs fila 2: Delitos ──────────────────────────────────────────────────────
-st.markdown('<div class="section-title">Denuncias de extorsión (PNP / SIDPOL-DGIS · 26/05/2026)</div>',
+st.markdown('<div class="section-title">Denuncias de extorsión (SIDPOL - MININTER)</div>',
             unsafe_allow_html=True)
 c4, c5, c6 = st.columns(3)
 c4.metric("Total denuncias (Lima y Callao)", f"{int(kv('Denuncias de extorsión (total)')):,}")
@@ -167,8 +167,14 @@ with tab_iiee:
     df_ti = get("Top_IIEE")
     if not df_ti.empty:
         st.bar_chart(df_ti.head(15).set_index("IIEE")["Denuncias cercanas"])
+        st.info(
+            "**Lectura:** Cada barra indica cuántas denuncias de extorsión fueron registradas "
+            "dentro de un radio de 100 m alrededor de esa institución educativa. "
+            "Una misma denuncia puede contabilizarse para más de una IIEE si varias se encuentran "
+            "dentro de ese radio. El ranking refleja exposición geográfica directa, no atribución exclusiva."
+        )
         st.dataframe(df_ti, use_container_width=True, hide_index=True)
-        st.markdown('<div class="fuente">Fuente: MINEDU + PNP / SIDPOL-DGIS · sjoin_nearest geopandas</div>',
+        st.markdown('<div class="fuente">Fuente: MINEDU + PNP / SIDPOL-DGIS · buffer circular 100 m · geopandas.sjoin predicate="within"</div>',
                     unsafe_allow_html=True)
     else:
         st.info("Sin datos.")
@@ -215,7 +221,7 @@ st.caption(
     "**Fuentes:** MINEDU — Padrón Web de Instituciones Educativas (actualización 29/04/2026) · "
     "PNP / SIDPOL-DGIS — Registro de delitos policiales 2025–2026 (corte 26/05/2026) · "
     "IGN Perú — Límites político-administrativos. "
-    "**Metodología:** Análisis de proximidad espacial con `geopandas.sjoin_nearest` en proyección UTM-18S, "
-    f"radio de {int(kv('Radio de análisis (metros)'))} m. "
+    "**Metodología:** Análisis de proximidad espacial con buffer circular de 100 m por IIEE (`geopandas.sjoin`, predicate='within') en proyección UTM-18S. "
+    "Una denuncia se contabiliza para todas las IIEE cuyo radio de 100 m la contenga. "
     "Los datos de denuncias no representan la totalidad de los hechos delictivos (cifra negra no contabilizada)."
 )
