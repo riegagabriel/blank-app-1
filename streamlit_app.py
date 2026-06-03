@@ -25,8 +25,9 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # ── Carga del XLSX (cacheada) ─────────────────────────────────────────────────
-XLSX_FILE = "dashboard_bienestar_docente.xlsx"
-ZIP_FILE  = "mapa_cluster.zip"
+_OUT_DIR  = "OUTPUTS_DASHBOARD"
+XLSX_FILE = os.path.join(_OUT_DIR, "dashboard_bienestar_docente.xlsx")
+ZIP_FILE  = os.path.join(_OUT_DIR, "mapa_iiee_extorsion.zip")
 
 @st.cache_data(show_spinner="Cargando datos del dashboard...")
 def load_xlsx(path):
@@ -48,10 +49,10 @@ def kv(nombre):
 
 # ── Header ────────────────────────────────────────────────────────────────────
 st.title("Cercanía de denuncias de extorsión a instituciones educativas")
-st.caption("Lima y Callao · 2025–2026 · Fuentes: MINEDU (ESCALE) y MININTER")
+st.caption("Lima y Callao · 2025–2026 · Fuentes: MINEDU (Padrón Web) y PNP / SIDPOL-DGIS")
 
 # ── KPIs fila 1: IIEE ─────────────────────────────────────────────────────────
-st.markdown('<div class="section-title">Instituciones Educativas (MINEDU — Escale)</div>',
+st.markdown('<div class="section-title">Instituciones Educativas (MINEDU — Padrón Web 29/04/2026)</div>',
             unsafe_allow_html=True)
 c1, c2, c3 = st.columns(3)
 c1.metric("IIEE activas en Lima y Callao", f"{int(kv('IIEE activas en Lima y Callao')):,}")
@@ -59,7 +60,7 @@ c2.metric("Docentes censados 2025",        f"{int(kv('Docentes censados 2025 (to
 c3.metric("Alumnos censados 2025",         f"{int(kv('Alumnos censados 2025 (total)')):,}")
 
 # ── KPIs fila 2: Delitos ──────────────────────────────────────────────────────
-st.markdown('<div class="section-title">Denuncias de extorsión (SIDPOL - MININTER)</div>',
+st.markdown('<div class="section-title">Denuncias de extorsión (PNP / SIDPOL-DGIS · 26/05/2026)</div>',
             unsafe_allow_html=True)
 c4, c5, c6 = st.columns(3)
 c4.metric("Total denuncias (Lima y Callao)", f"{int(kv('Denuncias de extorsión (total)')):,}")
