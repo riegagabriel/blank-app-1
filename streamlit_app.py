@@ -48,7 +48,7 @@ def kv(nombre):
 
 # ── Header ────────────────────────────────────────────────────────────────────
 st.title("Cercanía de denuncias de extorsión a instituciones educativas")
-st.caption("Lima y Callao · 2025–2026 · Fuentes: MINEDU (Padrón Web) y PNP / SIDPOL-DGIS")
+st.caption("Lima y Callao · 2025–2026 · Fuentes: MINEDU (Padrón Web de Escale) y Mapa georreferenciado de MININTER")
 
 # ── KPIs fila 1: IIEE ─────────────────────────────────────────────────────────
 st.markdown('<div class="section-title">Instituciones Educativas (MINEDU — Padrón Web 29/04/2026)</div>',
