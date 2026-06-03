@@ -26,7 +26,7 @@ st.markdown("""
 
 # ── Carga del XLSX (cacheada) ─────────────────────────────────────────────────
 XLSX_FILE = "dashboard_bienestar_docente.xlsx"
-ZIP_FILE  = "mapa_iiee_extorsion.zip"
+ZIP_FILE  = "mapa_cluster.zip"
 
 @st.cache_data(show_spinner="Cargando datos del dashboard...")
 def load_xlsx(path):
