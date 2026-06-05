@@ -220,7 +220,6 @@ st.caption(
     "PNP / SIDPOL MININTER — Registro de delitos policiales 2025–2026 (https://observatorio.mininter.gob.pe/MapaDelDelitoGeorreferenciado) · "
     "**Metodología:** Análisis de proximidad espacial con buffer circular de 100 m por IIEE. "
     "Una denuncia se contabiliza para todas las IIEE cuyo radio de 100 m la contenga. "
-    "Los datos de denuncias no representan la totalidad de los hechos delictivos (cifra negra no contabilizada), sino los registros
-    administrativos."
+    "Los datos de denuncias no representan la totalidad de los hechos delictivos (cifra negra no contabilizada), sino los registros administrativos."
 )
 
