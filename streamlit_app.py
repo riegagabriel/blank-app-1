@@ -92,8 +92,7 @@ tab_mapa, tab_tiempo, tab_distritos, tab_iiee, tab_turno, tab_gestion = st.tabs(
 
 # ── Tab 1: Mapa ───────────────────────────────────────────────────────────────
 with tab_mapa:
-    st.markdown("Clusters de denuncias y marcadores de IIEE. Usa el panel de capas (arriba a la derecha) "
-                "para activar o desactivar cada capa.")
+    st.markdown("Mapa de denuncias con marcadores para IIEE y denuncias por extorsión georreferenciadas")
 
     if os.path.exists(ZIP_FILE):
         with tempfile.TemporaryDirectory() as tmp:
@@ -217,11 +216,11 @@ with tab_gestion:
 # ── Footer ────────────────────────────────────────────────────────────────────
 st.markdown("---")
 st.caption(
-    "**Fuentes:** MINEDU — Padrón Web de Instituciones Educativas (actualización 29/04/2026) · "
-    "PNP / SIDPOL-DGIS — Registro de delitos policiales 2025–2026 (corte 26/05/2026) · "
-    "IGN Perú — Límites político-administrativos. "
-    "**Metodología:** Análisis de proximidad espacial con buffer circular de 100 m por IIEE (`geopandas.sjoin`, predicate='within') en proyección UTM-18S. "
+    "**Fuentes:** MINEDU — Padrón Web de Instituciones Educativas (https://escale.minedu.gob.pe/padron-de-iiee?utm_source) · "
+    "PNP / SIDPOL MININTER — Registro de delitos policiales 2025–2026 (https://observatorio.mininter.gob.pe/MapaDelDelitoGeorreferenciado) · "
+    "**Metodología:** Análisis de proximidad espacial con buffer circular de 100 m por IIEE. "
     "Una denuncia se contabiliza para todas las IIEE cuyo radio de 100 m la contenga. "
-    "Los datos de denuncias no representan la totalidad de los hechos delictivos (cifra negra no contabilizada)."
+    "Los datos de denuncias no representan la totalidad de los hechos delictivos (cifra negra no contabilizada), sino los registros
+    administrativos."
 )
 
