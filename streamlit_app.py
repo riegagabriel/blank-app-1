@@ -47,10 +47,10 @@ def kv(nombre):
 
 # ── Header ────────────────────────────────────────────────────────────────────
 st.title("Cercanía de denuncias de extorsión a instituciones educativas")
-st.caption("Lima y Callao · 2025–2026 · Fuentes: MINEDU (Padrón Web) y PNP / SIDPOL-DGIS")
+st.caption("Lima y Callao · 2025–2026 · Fuentes: MINEDU - ESCALE y PNP/SIDPOL ")
 
 # ── KPIs fila 1: IIEE ─────────────────────────────────────────────────────────
-st.markdown('<div class="section-title">Instituciones Educativas (MINEDU — Padrón Web 29/04/2026)</div>',
+st.markdown('<div class="section-title">Instituciones Educativas (MINEDU — Padrón Web)</div>',
             unsafe_allow_html=True)
 c1, c2, c3 = st.columns(3)
 c1.metric("IIEE activas en Lima y Callao", f"{int(kv('IIEE activas en Lima y Callao')):,}")
@@ -58,7 +58,7 @@ c2.metric("Docentes censados 2025",        f"{int(kv('Docentes censados 2025 (to
 c3.metric("Alumnos censados 2025",         f"{int(kv('Alumnos censados 2025 (total)')):,}")
 
 # ── KPIs fila 2: Delitos ──────────────────────────────────────────────────────
-st.markdown('<div class="section-title">Denuncias de extorsión (PNP / SIDPOL-DGIS · 26/05/2026)</div>',
+st.markdown('<div class="section-title">Denuncias de extorsión (PNP / SIDPOL)</div>',
             unsafe_allow_html=True)
 c4, c5, c6 = st.columns(3)
 c4.metric("Total denuncias (Lima y Callao)", f"{int(kv('Denuncias de extorsión (total)')):,}")
@@ -224,3 +224,4 @@ st.caption(
     "Una denuncia se contabiliza para todas las IIEE cuyo radio de 100 m la contenga. "
     "Los datos de denuncias no representan la totalidad de los hechos delictivos (cifra negra no contabilizada)."
 )
+
