@@ -190,7 +190,7 @@ with tab_distritos:
     )
 # ── Tab 4: Top IIEE ───────────────────────────────────────────────────────────
 with tab_iiee:
-    st.markdown('<div class="section-title">Instituciones educativas con más denuncias en su entorno inmediato (≤ 100 m)</div>',
+    st.markdown('<div class="section-title">Instituciones educativas con más denuncias en su entorno inmediato (menos de 100 m)</div>',
                 unsafe_allow_html=True)
     df_ti = get("Top_IIEE")
     if not df_ti.empty:
@@ -202,7 +202,7 @@ with tab_iiee:
             "dentro de ese radio. El ranking refleja exposición geográfica directa, no atribución exclusiva."
         )
         st.dataframe(df_ti, use_container_width=True, hide_index=True)
-        st.markdown('<div class="fuente">Fuente: MINEDU + PNP / SIDPOL-DGIS · buffer circular 100 m · geopandas.sjoin predicate="within"</div>',
+        st.markdown('<div class="fuente">Fuente: MINEDU + PNP / SIDPOL-MININTER · Proximidad espacial - 100 m"</div>',
                     unsafe_allow_html=True)
     else:
         st.info("Sin datos.")
@@ -220,7 +220,7 @@ with tab_turno:
             "Un pico en turno mañana/tarde es relevante porque coincide con el horario escolar, "
             "aumentando el riesgo percibido por docentes y alumnos."
         )
-        st.markdown('<div class="fuente">Fuente: PNP / SIDPOL-DGIS · campo turno_hecho</div>',
+        st.markdown('<div class="fuente">Fuente: PNP / SIDPOL-MINITER </div>',
                     unsafe_allow_html=True)
     else:
         st.info("Sin datos.")
@@ -238,7 +238,7 @@ with tab_gestion:
             "tienen al menos una denuncia de extorsión registrada a ≤ 100 m. "
             "El % de IIEE afectadas permite comparar la exposición relativa entre tipos."
         )
-        st.markdown('<div class="fuente">Fuente: MINEDU + análisis espacial</div>',
+        st.markdown('<div class="fuente">Fuente: MINEDU </div>',
                     unsafe_allow_html=True)
     else:
         st.info("Sin datos.")
