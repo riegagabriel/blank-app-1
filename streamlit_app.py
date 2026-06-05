@@ -130,34 +130,64 @@ with tab_tiempo:
         st.bar_chart(df_plot[["EXTORSION", "EXTORSION AGRAVADA"]] if "EXTORSION" in df_plot.columns
                      else df_plot.drop(columns=["Total"], errors="ignore"))
         st.dataframe(df_t, use_container_width=True, hide_index=True)
-        st.markdown('<div class="fuente">Fuente: PNP / SIDPOL-DGIS · fecha_hora_hecho convertida desde timestamp Unix (ms)</div>',
+        st.markdown('<div class="fuente">Fuente: SIDPOL - MININTER </div>',
                     unsafe_allow_html=True)
     else:
         st.info("Sin datos de línea de tiempo.")
 
 # ── Tab 3: Distritos ──────────────────────────────────────────────────────────
 with tab_distritos:
+
     col_a, col_b = st.columns(2)
 
     with col_a:
-        st.markdown('<div class="section-title">Top 20 distritos — todas las denuncias</div>',
-                    unsafe_allow_html=True)
+        st.markdown(
+            '<div class="section-title">Top 20 distritos — todas las denuncias</div>',
+            unsafe_allow_html=True
+        )
+
+        st.caption(
+            "Ranking de distritos con el mayor número de denuncias de extorsión registradas por la PNP."
+        )
+
         df_da = get("Top_Distritos").head(20)
+
         if not df_da.empty:
-            st.bar_chart(df_da.set_index("Distrito")["Total denuncias"])
-            st.dataframe(df_da, use_container_width=True, hide_index=True)
+            st.bar_chart(
+                df_da.set_index("Distrito")["Total denuncias"]
+            )
+            st.dataframe(
+                df_da,
+                use_container_width=True,
+                hide_index=True
+            )
 
     with col_b:
-        st.markdown(f'<div class="section-title">Top 20 distritos — denuncias ≤ 100 m de IIEE</div>',
-                    unsafe_allow_html=True)
+        st.markdown(
+            '<div class="section-title">Top 20 distritos — denuncias ≤ 100 m de IIEE</div>',
+            unsafe_allow_html=True
+        )
+
+        st.caption(
+            "Ranking de distritos con mayor cantidad de denuncias de extorsión ubicadas a 100 metros o menos de una institución educativa. La proximidad geográfica no implica necesariamente que el hecho haya ocurrido dentro de la IIEE."
+        )
+
         df_dn = get("Distritos_IIEE").head(20)
+
         if not df_dn.empty:
-            st.bar_chart(df_dn.set_index("Distrito")["Denuncias ≤100m IIEE"])
-            st.dataframe(df_dn, use_container_width=True, hide_index=True)
+            st.bar_chart(
+                df_dn.set_index("Distrito")["Denuncias ≤100m IIEE"]
+            )
+            st.dataframe(
+                df_dn,
+                use_container_width=True,
+                hide_index=True
+            )
 
-    st.markdown('<div class="fuente">Fuente: PNP / SIDPOL-DGIS + MINEDU · Análisis espacial radio 100 m</div>',
-                unsafe_allow_html=True)
-
+    st.markdown(
+        '<div class="fuente">Fuente: PNP / SIDPOL-DGIS + MINEDU · Análisis espacial radio 100 m</div>',
+        unsafe_allow_html=True
+    )
 # ── Tab 4: Top IIEE ───────────────────────────────────────────────────────────
 with tab_iiee:
     st.markdown('<div class="section-title">Instituciones educativas con más denuncias en su entorno inmediato (≤ 100 m)</div>',
